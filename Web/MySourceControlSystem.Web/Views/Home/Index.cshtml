@@ -1,0 +1,22 @@
+﻿@model IEnumerable<MySourceControlSystem.Web.ViewModels.Repositories.RepositoryViewModel>
+
+@{
+    this.ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+
+    @foreach (var repository in this.Model)
+    {
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@repository.Name</h5>
+                    <p class="card-text">@repository.Description</p>
+                    <p class="card-text">Created By: @repository.UserUserName</p>
+                    <a asp-controller="Repositories" asp-action="ById" asp-route-id="@repository.Id" class="btn btn-primary">View Repository</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

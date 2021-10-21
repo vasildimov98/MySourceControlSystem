@@ -1,0 +1,21 @@
+﻿@model MySourceControlSystem.Web.ViewModels.Repositories.RepositoryIssuesViewModel
+
+<div class="card">
+    <h5 class="card-title">Repository Name: @this.Model.Name</h5>
+
+    <p><strong>Issues:</strong></p>
+    <ul class="list-group list-group-flush">
+        @foreach (var issue in this.Model.Issues)
+        {
+            <li class="list-group-item">
+                <strong>Content:</strong>: @issue.Content
+                <strong>Created By:</strong> @issue.UserName
+
+                @if (issue.IsLoggInUserTheOwner)
+                {
+                    <a class="btn btn-danger" asp-controller="Repositories" asp-action="DeleteIssue" asp-route-repId="@this.Model.Id" asp-route-id="@issue.Id">Delete</a>
+                }
+            </li>
+        }
+    </ul>
+</div>

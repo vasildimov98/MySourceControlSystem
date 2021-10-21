@@ -1,0 +1,36 @@
+﻿@model MySourceControlSystem.Web.ViewModels.Repositories.RepositoryViewModel
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@this.Model.Name</h5>
+                <p class="card-text">@this.Model.Description</p>
+                <p class="card-text">Created By: @this.Model.UserUserName</p>
+                <p class="card-text">Issue №: @this.Model.IssuesCount</p>
+                <p class="card-text">Pull Request №: @this.Model.PullRequestsCount</p>
+                <a asp-controller="Repositories" asp-action="IssuesById" asp-route-id="@this.Model.Id" class="btn btn-info">View Issues</a>
+                <a asp-controller="Repositories" asp-action="PullRequestsById" asp-route-id="@this.Model.Id" class="btn btn-info float-right">View Pull Request</a>
+            </div>
+        </div>
+
+        <form method="post" asp-controller="Repositories" asp-action="CreateIssue" asp-route-id="@this.Model.Id">
+            <div class="form-group">
+                <label for="Content">Issue Content</label>
+                <input for="Content" type="text" name="content" class="form-control">
+            </div>
+
+            <input type="submit" class="btn btn-primary mb-2" value="Create Issue" />
+        </form>
+        <hr />
+        <form method="post" asp-controller="Repositories" asp-action="CreatePullRequest" asp-route-id="@this.Model.Id">
+            <div class="form-group">
+                <label for="Content">Pull Request Content</label>
+                <input for="Content" type="text" name="content" class="form-control">
+            </div>
+
+            <input type="submit" class="btn btn-primary mb-2" value="Pull Request" />
+        </form>
+
+    </div>
+</div>

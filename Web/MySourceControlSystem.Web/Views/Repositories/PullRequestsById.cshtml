@@ -1,0 +1,21 @@
+﻿@model MySourceControlSystem.Web.ViewModels.Repositories.RepositoryPullRequstsViewModel
+
+<div class="card">
+    <h5 class="card-title">Repository Name: @this.Model.Name</h5>
+
+    <p><strong>Issues:</strong></p>
+    <ul class="list-group list-group-flush">
+        @foreach (var pullRequest in this.Model.PullRequests)
+        {
+            <li class="list-group-item">
+                <strong>Content:</strong>: @pullRequest.Content
+                <strong>Created By:</strong> @pullRequest.UserName
+
+                @if (pullRequest.IsLoggInUserTheOwner)
+                {
+                    <a class="btn btn-danger" asp-controller="Repositories" asp-action="DeletePullRequest" asp-route-repId="@this.Model.Id" asp-route-id="@pullRequest.Id">Delete</a>
+                }
+            </li>
+        }
+    </ul>
+</div>
